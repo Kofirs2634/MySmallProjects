@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Калькулятор дат</title>
+    <script src="modules/jquery.js"></script>
+    <style>
+        input:disabled {
+            border: none;
+            border-bottom: 2px #999 solid;
+            background: none
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Первая дата:</td>
+            <td><input type="date" id="e-date" /> <input type="time" id="e-time" step="1000" /></td>
+        </tr>
+        <tr>
+            <td>Вторая дата:</td>
+            <td><input type="date" id="l-date" /> <input type="time" id="l-time" step="1000" /></td>
+        </tr>
+        <tr>
+            <td><label for="dig">Только цифры</label></td>
+            <td><input type="checkbox" id="dig" checked /></td>
+        </tr>
+        <tr>
+            <td><label for="hrs">Не переводить в сутки</label></td>
+            <td><input type="checkbox" id="hrs" /></td>
+        </tr>
+    </table>
+    <input type="button" id="sub" value="Посчитать" />
+
+    <div class="result">
+        Между ними прошло <input type="text" id="res" placeholder="столько времени" disabled />.
+    </div>
+
+    <script>
+        $('#sub').click(() => {
+            let a = new Date(`${$('#e-date').val()}T${$('#e-time').val()}Z`).getTime(),
+                b = new Date(`${$('#l-date').val()}T${$('#l-time').val()}Z`).getTime(),
+                c = Math.abs(a - b) / 1000,
+                t = [
+                    $('#hrs').prop('checked') ? '--' : Math.floor(c / 3600 / 24),
+                    $('#hrs').prop('checked') ? Math.floor(c / 3600) : Math.floor(c / 3600) - (Math.floor(c / 3600 / 24) * 24),
+                    Math.floor(c / 60 - Math.floor(c / 3600) * 60),
+                    Math.floor((c / 60 - Math.floor(c / 3600) * 60) % 1 * 60)
+                ];
+            t.forEach((e, n) => {
+                if (String(e).length < 2 && $('#dig').prop('checked')) t[n] = '0' + e
+            })
+            if ($('#dig').prop('checked')) $('#res').val(`${t.join(':')}`)
+            else $('#res').val(`${t[0]} сут. ${t[1]} час. ${t[2]} мин. ${t[3]} сек.`)
+        })
+    </script>
+</body>
+</html>

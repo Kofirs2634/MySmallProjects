@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Click Game</title>
+		<link rel="stylesheet" href=".\css\main.css" />
+		<link rel="stylesheet" href=".\css\switch.css" />
+		<script src=".\js\vars.js"></script>
+	</head>
+	<body>
+		<table width="12%" border="0px">
+			<tr>
+				<td><label class="switch"><input type="checkbox" id="theme" onchange="themech(this)"><span class="slider round"></span></label></td>
+				<td><span id="themet">Night Theme</span></td>
+			</tr>
+		</table>
+		<!-- -->
+		<div style="text-align: center; width: 50%;">
+			<p>Your score:</p><span id="score" style="font-weight: bold; font-size: 2em">0</span><br>
+			<span id="scoreperclick" style="font-size: 12px; font-weight: bold;">1</span> <span style="font-size: 12px;"><abbr title="Score per Click">SPC</abbr></span><br>
+			<span id="scorepersecond" style="font-size: 12px; font-weight: bold;">0</span> <span style="font-size: 12px;"><abbr title="Score per Second">SPS</abbr></span><br>
+			<input class="mainbutton" type="button" id="clickme" value="Click me!" style="margin-top: 10px" onclick="ButtonClick()" /><br>
+			<input type="button" id="updbtn" value="Update" style="margin-top: 1px" onclick="Update()" />
+		</div>
+		<!-- -->
+		<div style="width: 100%; height: 50px;"> </div>
+		<!-- -->
+		<table width="50%" border="0px" style="text-align: center;">
+			<caption><span style="font-size: 1.7em; font-weight: bold;">Upgrades</span></caption>
+			<tr>
+				<td><span style="font-weight: bold">Adder</span><br>Gives +<span id="upg1pr">4</span> per click</td>
+				<td>Cost: <span id="upg1ct">20</span><br><input type="button" id="upg1bt" value="Buy" style="margin-top: 5px" disabled onclick="Upg1()" /></td>
+			</tr>
+			<tr>
+				<td><span style="font-weight: bold">Multier</span><br>Multiplies <abbr title="Score per Second">SPC</abbr> by <span id="upg2pr">2</span></td>
+				<td>Cost: <span id="upg2ct">150</span><br><input type="button" id="upg2bt" value="Buy" style="margin-top: 5px" disabled onclick="Upg2()" /></td>
+			</tr>
+			<tr>
+				<td><span style="font-weight: bold">Timer</span><br>Gives +<span id="upg3pr">5</span> per second</td>
+				<td>Cost: <span id="upg3ct">600</span><br><input type="button" id="upg3bt" value="Buy" style="margin-top: 5px" disabled onclick="Upg3()" /></td>
+			</tr>
+			<tr>
+				<td><span style="font-weight: bold">Clocker</span><br>Multiplies <abbr title="Score per Second">SPS</abbr> by <span id="upg4pr">2</span></td>
+				<td>Cost: <span id="upg4ct">2000</span><br><input type="button" id="upg4bt" value="Buy" style="margin-top: 5px" disabled onclick="Upg4()" /></td>
+			</tr>
+		</table>
+		<!-- -->
+		<script src=".\js\functions.js"></script>
+	</body>
+</html>

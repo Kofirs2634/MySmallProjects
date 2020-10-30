@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Language choose form</title>
+		<link rel="stylesheet" href="langformstyle.css">
+	</head>
+	<body>
+		<span>Please choose the language.</span>
+		<form name="langForm">
+			<label class="container"><input type="radio" name="lang" value="Russian">Russian</input></label><br>
+			<label class="container"><input type="radio" name="lang" value="English">English</input></label><br>
+			<label class="container"><input type="radio" name="lang" value="Spanish">Spanish</input></label><br>
+			<label class="container"><input type="radio" name="lang" value="Chinese">Chinese</input></label><br>
+			<label class="container"><input type="radio" name="lang" value="Japanese">Japanese</input></label><br>
+			<label class="container"><input type="radio" name="lang" value="NA">I don't want to answer</input></label><br>
+			<input type="reset" value="Clear form" />
+		</form>
+		<div id="choose">You haven't chosen the language yet.</div>
+		<span>After the choose please fill the form below.</span>
+		<form name="username">
+			<input type="text" placeholder="Your name" name="name" /> <input type="submit" value="Sent" name="send" /> <input type="reset" value="Clear" />
+		</form>
+		<hr>
+		<div class="watermark">This page was created by Kofirs2634 on 20th December, 2018 at 21:00 PM.<br>Thank you.</div>
+		<script src="languageform.js"></script>
+		<script src="send.js"></script>
+		<!-- Поле активировано всегда, даже если вы не выбрали язык. Не пропускайте выбор, имейте совесть!!! -->
+	</body>
+</html>

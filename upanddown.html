@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Up and Down</title>
+    <script>
+        var bef = 0,
+            aft = Math.floor(Math.random() * 2000 - 1000),
+            min = 0, max = 0;
+        function check(aft, bef, min, max) {
+            if (aft < bef) {
+                document.getElementById('diff').innerHTML = `${aft - bef} ▼`;
+                document.getElementById('diff').style.color = '#F00'
+            } else if (aft == bef) {
+                document.getElementById('diff').innerHTML = `0 —`;
+                document.getElementById('diff').style.color = '#00F'
+            } else if (aft > bef) {
+                document.getElementById('diff').innerHTML = `${aft - bef} ▲`;
+                document.getElementById('diff').style.color = '#0F0'
+            }
+            if (Math.abs(aft - bef) > 1000) document.getElementById('diff').style.textShadow = '0 0 10px'
+            else document.getElementById('diff').style.textShadow = 'none';
+            document.getElementById('after').innerHTML = `After<br>${aft}`;
+            document.getElementById('before').innerHTML = `Before<br>${bef}`;
+            document.getElementById('max').innerHTML = `Max<br>${max}`;
+            document.getElementById('min').innerHTML = `Min<br>${min}`
+        }
+    </script>
+</head>
+<body style="background: #000; color: #FFF; text-align: center; font-family: Consolas; display: flex; flex-direction: column; align-items: center">
+    <div style="flex: auto; display: flex; justify-items: center; align-items: center; font-size: 4em; width: 100%; height: 70%">
+        <div style="flex: auto" id="before">Before<br>0</div>
+        <div style="flex: auto; color: #00F" id="diff">-- —</div>
+        <div style="flex: auto" id="after">After<br>---</div>
+    </div>
+    <div style="display: flex; justify-items: center; align-items: center; font-size: 2em; width: 100%; height: 30%">
+        <div style="flex: auto" id="min">Min<br>0</div>
+        <div style="flex: auto" id="max">Max<br>---</div>
+    </div>
+    <script>
+        check(aft, bef, min, max);
+        setInterval(() => {
+            if (aft > max) {
+                max = aft;
+                document.getElementById('max').innerHTML = `Max<br>${max}`;
+            } else if (aft < min) {
+                min = aft;
+                document.getElementById('min').innerHTML = `Min<br>${min}`;
+            }
+            check(aft, bef, min, max)
+            bef = aft;
+            aft = Math.floor(Math.random() * 2000 - 1000);
+        }, 5000)
+    </script>
+</body>
+</html>

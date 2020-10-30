@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>3D Guess</title>
+    <script src="../../modules/jquery.js"></script>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+    <div id="guess">
+        <h2>Точка загадана!</h2>
+        <p>Точка имеет три координаты, x, y и z, обозначенные в формате (x; y; z). Все координаты не меньше нуля.</p>
+        <div id="input">
+            (<input id="x" placeholder="x" maxlength="3" />; <input id="y" placeholder="y" maxlength="3" />; <input id="z" placeholder="z" maxlength="3" />)
+        </div>
+        <input type="button" value="Проверить" id="click-me" />
+        <ul>
+            <li>Координаты точки не превышают 100.</li>
+            <li>Шанс угадать с первого раза: <span id="chance"></span>%</li>
+            <li>Проверок: <span id="checks">0</span></li>
+            <li><span style="font-size: 25px"><b>Расстояние:</b> <span id="dist">?</span></span></li>
+        </ul>
+    </div>
+    <script src="process.js"></script>
+</body>
+</html>

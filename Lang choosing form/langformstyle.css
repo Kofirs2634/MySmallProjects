@@ -1,0 +1,48 @@
+/* Сначала главное */
+body {
+	font-family: Berlin Sans FB;
+	background: #FFC187;
+	color: #00A;
+}
+input[type="submit"], input[type="reset"] {
+	color: #00A;
+	font-family: Berlin Sans FB;
+	background: linear-gradient(180deg, rgba(255,152,79,1) 0%, rgba(178,77,0,1) 100%);
+	border-color: #FFAD77;
+	transition: 0.5s linear;
+}
+input[type="text"] {
+	background: #FFA251;
+	font-family: Berlin Sans FB;
+	border: inset 2px #FF821C;
+	padding: 2px;
+	color: #00A;
+	transition: 0.2s linear;
+}
+/* Потом дополнительное */
+::placeholder {
+	color: #5959A8;
+}
+hr {
+	border-color: #FFDBBF;
+}
+label {
+	transition: 0.5s linear;
+}
+/* Кастомные классы */
+.watermark {
+	text-align: center;
+	color: #FFE9D6;
+	cursor: default;
+}
+/* И ховеры */
+input[type="submit"]:hover, input[type="reset"]:hover, label:hover {
+	filter: brightness(125%);
+}
+input[type="text"]:hover {
+	filter: brightness(110%);
+}
+/* И немножко фокуса */
+input[type="text"]:focus {
+	filter: brightness(125%);
+}

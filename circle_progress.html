@@ -1,0 +1,185 @@
+<html>
+<head>
+    <style>
+        :root {
+            --progress-color: #F00;
+            --progress-degree: 0deg
+        }
+        body {
+            text-align: center;
+            background: #000
+        }
+        .avatar {
+            border-radius: 90px;
+            width: 150px;
+            height: 150px
+        }
+        .box {
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            margin-top: 50px;
+            position: relative
+        }
+        .box:before, .box:after {
+            content: '';
+            background: conic-gradient(var(--progress-color) var(--progress-degree), #444 0deg);
+            border-radius: 90px;
+            width: 166px;
+            height: 166px;
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            z-index: -1
+        }
+        .box:after {
+            filter: blur(15px);
+            z-index: -2
+        }
+        ul {
+            list-style: none;
+            margin-top: 100px;
+            padding: 0
+        }
+        li {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+        }
+        .color {
+            border: 4px solid #000
+        }
+        .selected {
+            border-color: #08F
+        }
+        .rainbow {
+            background: linear-gradient(225deg, #F00, #FF0, #0F0, #0FF, #00F, #F0F)
+        }
+        @keyframes glint {
+            0% { --progress-color: #F00 }
+            4% { --progress-color: #F40 }
+            8% { --progress-color: #F80 }
+            12% { --progress-color: #FB0 }
+            16% { --progress-color: #FF0 }
+            20% { --progress-color: #BF0 }
+            24% { --progress-color: #8F0 }
+            28% { --progress-color: #4F0 }
+            32% { --progress-color: #0F0 }
+            36% { --progress-color: #0F4 }
+            40% { --progress-color: #0F8 }
+            44% { --progress-color: #0FB }
+            48% { --progress-color: #0FF }
+            52% { --progress-color: #0BF }
+            56% { --progress-color: #08F }
+            60% { --progress-color: #04F }
+            64% { --progress-color: #00F }
+            68% { --progress-color: #40F }
+            72% { --progress-color: #80F }
+            76% { --progress-color: #B0F }
+            80% { --progress-color: #F0F }
+            88% { --progress-color: #F0B }
+            94% { --progress-color: #F08 }
+            100% { --progress-color: #F04 }
+        }
+        .pick {
+            opacity: 0;
+            width: 25px;
+            height: 25px;
+            margin-top: -15px;
+        }
+        .color:last-child {
+            vertical-align: top;
+        }
+        .color:last-child:before {
+            content: 'custom';
+            font-size: 12px;
+            transform: rotateZ(-45deg);
+            color: #888;
+            display: block;
+            position: relative;
+            top: 7px;
+            left: -4px
+        }
+        [type="button"] {
+            background: none;
+            border: #08F 2px solid;
+            color: #FFF;
+            font-family: 'Times New Roman';
+            border-radius: 3px
+        }
+        [type="button"]:hover {
+            background: #08F;
+            color: #000
+        }
+    </style>
+    <script src="./modules/jquery.js"></script>
+</head>
+<body>
+    <div class="box">
+        <img src="https://www.advantour.com/russia/images/symbolics/russia-flag.jpg" class="avatar" />
+    </div>
+    <ul class="colors">
+        <li class="color selected" style="background: #F00"></li>
+        <li class="color" style="background: #F80"></li>
+        <li class="color" style="background: #FF0"></li>
+        <li class="color" style="background: #0F0"></li>
+        <li class="color" style="background: #0FF"></li>
+        <li class="color" style="background: #00F"></li>
+        <li class="color" style="background: #80F"></li>
+        <li class="color" style="background: #F0F"></li>
+        <li class="color" style="background: #FFF"></li>
+        <li class="color rainbow"></li>
+        <li class="color" id="custom">
+            <input type="color" class="pick" />
+        </li>
+    </ul>
+    <div class="buttons">
+        <input type="button" value="Старт" id="start" />
+        <input type="button" value="Пауза" id="stop" />
+        <input type="button" value="Сброс" id="reset" />
+    </div>
+    <script>
+        var progress = 0, fill;
+
+        function start() {
+            fill = setInterval(() => {
+                progress += Math.round(Math.random() * 5);
+                $(':root').css('--progress-degree', `${progress}deg`);
+                if (progress >= 360) clearInterval(fill)
+            }, 250)
+        }
+        
+        $('[type="button"]').click(e => {
+            var targ = $(e.target).attr('id');
+            if (targ == 'start') start();
+            else if (targ == 'stop') clearInterval(fill)
+            else if (targ == 'reset') {
+                progress = 0;
+                $(':root').css('--progress-degree', `0deg`);
+            }
+        })
+        
+        $('.pick').change(e => {
+            var color = $(e.target).val()
+            $(':root').css('--progress-color', color)
+            $(e.target).parent().css('background', color).toggleClass('selected', true)
+        })
+
+        $('.color').click(e => {
+            var targ = $(e.target);
+            $('.color').toggleClass('selected', false)
+            $(':root').css('animation', 'none')
+            if (targ.attr('type') != 'color') {
+                targ.toggleClass('selected', true);
+                if (targ.attr('class').includes('rainbow')) $(':root').css('animation', 'glint 5s infinite linear')
+                else $(':root').css('--progress-color', targ.css('background-color'))
+            } else {
+                targ.parent().toggleClass('selected', true);
+                console.log($('.pick').val() == '#000000')
+                if ($('.pick').val() == '#000000') $(':root').css('--progress-color', '#FFF')
+                else $(':root').css('--progress-color', targ.parent().css('background-color'))
+            }
+        })
+    </script>
+</body>
+</html>

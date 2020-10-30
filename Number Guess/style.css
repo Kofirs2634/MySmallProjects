@@ -1,0 +1,20 @@
+/*
+* {
+    margin: 0;
+    padding: 0
+}
+*/
+#up-lim { width: 100px }
+ul { list-style: none }
+li { padding-left: 0 }
+#errs {
+    background: #F00;
+    color: #FFF;
+    font-size: 35px;
+    text-align: center;
+    display: none
+}
+#x, #y, #z {
+    width: 30px;
+    margin: 0 5px
+}

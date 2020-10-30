@@ -1,0 +1,21 @@
+body {
+	background: #00020F;
+	color: #FFF;
+}
+
+/* Buttons */
+/** Click me! **/
+input[type="button"]:not(:disabled) {
+	border: solid #00F 2px;
+	border-radius: 90px;
+	background: rgba(0, 0, 0, 0);
+	color: #00F;
+	transition: 0.5s;
+}
+input[type="button"]:disabled {
+	border: solid #F00 2px;
+	border-radius: 90px;
+	background: rgba(0, 0, 0, 0);
+	color: #F00;
+	transition: 0.5s;
+}
